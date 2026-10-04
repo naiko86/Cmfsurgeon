@@ -16,6 +16,7 @@
   let portrait = false;
   let queued = false;
   let last = 0;
+  let introUntil = 0;
 
   const clamp = (v, lo = 0, hi = 1) => Math.min(hi, Math.max(lo, v));
 
@@ -58,6 +59,7 @@
     const vh = window.innerHeight;
     const probe = vh * 0.5;
     const fade = vh * 0.3;
+    const atEnd = window.scrollY + vh >= document.documentElement.scrollHeight - 4;
     const t = {};
     KEYS.forEach(k => { t[k] = { w: 0, draw: 0, prog: 0.5 }; });
     for (const sec of sections) {
@@ -68,7 +70,8 @@
       if (w <= t[key].w) continue;
       t[key] = {
         w,
-        draw: clamp((vh - r.top) / (r.height * 0.6 + vh * 0.5)),
+        // starts when the section enters at the bottom, complete once its top nears the top edge
+        draw: atEnd && r.bottom <= vh + 4 ? 1 : clamp((vh - r.top) / (vh * 0.88)),
         prog: clamp((probe - r.top) / Math.max(r.height, 1)),
       };
     }
@@ -98,7 +101,9 @@
     queued = false;
     const dt = last ? Math.min(now - last, 100) : 16;
     last = now;
-    const k = reduce.matches ? 1 : 1 - Math.exp(-dt / 260);
+    // Slower easing right after load so the first scene visibly draws itself in.
+    const tau = now < introUntil ? 700 : 260;
+    const k = reduce.matches ? 1 : 1 - Math.exp(-dt / tau);
     const t = targets();
     let moving = false;
     for (const key of KEYS) {
@@ -121,6 +126,7 @@
   }
 
   Promise.allSettled(KEYS.map(load)).then(() => {
+    introUntil = performance.now() + 2200;
     measure();
     request();
     window.addEventListener('scroll', request, { passive: true });
