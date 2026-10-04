@@ -76,7 +76,7 @@
   }
 
   function render(s) {
-    s.holder.style.opacity = (s.opacity * (portrait ? 0.6 : 0.85)).toFixed(3);
+    s.holder.style.opacity = (s.opacity * (portrait ? 0.7 : 0.85)).toFixed(3);
     if (s.opacity < 0.004) return;
     if (Math.abs(s.draw - s.drawn) > 0.0005) {
       const n = Math.max(s.paths.length, 1);
