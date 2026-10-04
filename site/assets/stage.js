@@ -29,7 +29,7 @@
   }
 
   async function load(key) {
-    const res = await fetch(`/assets/scenes/${key}.svg`);
+    const res = await fetch(`assets/scenes/${key}.svg`);
     if (!res.ok) throw new Error(`scene ${key}: ${res.status}`);
     const holder = document.createElement('div');
     holder.className = 'scene';
