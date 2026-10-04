@@ -12,6 +12,8 @@ site/                    → wird 1:1 veröffentlicht
   404.html
   onur-dogru.vcf         „Save contact“-Datei (vCard 3.0)
   assets/styles.css      gesamtes Design (Farben als CSS-Variablen in :root)
+  assets/stage.js        scroll-animierter Hintergrund (OP-Szenen zeichnen sich beim Scrollen)
+  assets/scenes/*.svg    Strichzeichnungen: OP-Leuchte, Instrumente, Chirurg mit Lupenbrille
   assets/fonts/          Inter (SIL OFL)
   favicon.svg, apple-touch-icon.png, og-image.png (Vorschaubild für LinkedIn/WhatsApp)
 print/                   QR-Code für Visitenkarte/Badge (SVG für die Druckerei, PNG 2000 px)
@@ -59,8 +61,16 @@ Die Adresse existiert erst, wenn bei GoDaddy ein Postfach oder eine Weiterleitun
 (z. B. Microsoft 365 über GoDaddy, oder kostenlose Weiterleitung über einen Dienst wie ImprovMX per MX-Eintrag).
 Adresse ändern: `grep -rl "contact@cmfsurgeon.com" site` zeigt alle Stellen (Startseite, Impressum, vCard).
 
+## Animierter Hintergrund
+
+Jeder Abschnitt nennt seine Szene per `data-scene` (`orlight`, `instruments`, `surgeon`). `stage.js` lädt die SVGs,
+blendet beim Scrollen zwischen ihnen über, zeichnet alle Pfade mit `class="draw" pathLength="1"` nach und bewegt
+Gruppen `<g class="layer" data-depth="0.1–1">` mit Parallaxe. Bei „Bewegung reduzieren“ (Betriebssystem-Einstellung)
+erscheinen die Szenen fertig gezeichnet und werden nur ruhig überblendet; im Datensparmodus und ohne JavaScript
+bleibt der Hintergrund einfach dunkel.
+
 ## Pflege
 
-- **Porträtfoto ergänzen:** derzeit ist kein Foto eingebaut (Hero zeigt die digitale Visitenkarte). Für ein Foto im Format 4:5 ist der About-Bereich der naheliegende Platz.
+- **Porträtfoto ergänzen:** derzeit ist kein Foto eingebaut (die digitale Visitenkarte mit QR-Code steht im Kontaktbereich). Für ein Foto im Format 4:5 ist der About-Bereich der naheliegende Platz.
 - **Stylesheet geändert?** Versionsparameter `styles.css?v=JJJJMMTT` in allen HTML-Dateien hochzählen.
 - **QR-Code** zeigt auf `https://cmfsurgeon.com` und bleibt gültig, solange die Domain läuft.
