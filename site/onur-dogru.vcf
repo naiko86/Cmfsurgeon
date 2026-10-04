@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Dogru;Onur;;;MD\, DMD
+FN:Onur Dogru\, MD\, DMD
+ORG:University Hospital St. Pölten;Department of Oral and Maxillofacial Surgery
+TITLE:Deputy Senior Consultant\, Oral and Maxillofacial Surgery
+EMAIL;TYPE=INTERNET,WORK,PREF:contact@cmfsurgeon.com
+URL:https://cmfsurgeon.com
+URL;TYPE=LinkedIn:https://www.linkedin.com/in/onur-dogru-84145b29a
+X-SOCIALPROFILE;TYPE=linkedin:https://www.linkedin.com/in/onur-dogru-84145b29a
+ADR;TYPE=WORK:;;;St. Pölten;;;Austria
+NOTE:Specialist in oral and maxillofacial surgery. Languages: English\, German\, Turkish.
+END:VCARD
