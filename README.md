@@ -14,6 +14,7 @@ site/                    → wird 1:1 veröffentlicht
   assets/styles.css      gesamtes Design (Farben als CSS-Variablen in :root)
   assets/stage.js        scroll-animierter Hintergrund (OP-Szenen zeichnen sich beim Scrollen)
   assets/scenes/*.svg    Strichzeichnungen: OP-Leuchte, Instrumente, Chirurg mit Lupenbrille
+  assets/img/            Porträtfotos (Hero, Kontakt)
   assets/fonts/          Inter (SIL OFL)
   favicon.svg, apple-touch-icon.png, og-image.png (Vorschaubild für LinkedIn/WhatsApp)
 print/                   QR-Code für Visitenkarte/Badge (SVG für die Druckerei, PNG 2000 px)
@@ -71,6 +72,6 @@ bleibt der Hintergrund einfach dunkel.
 
 ## Pflege
 
-- **Porträtfoto ergänzen:** derzeit ist kein Foto eingebaut (die digitale Visitenkarte mit QR-Code steht im Kontaktbereich). Für ein Foto im Format 4:5 ist der About-Bereich der naheliegende Platz.
+- **Porträtfotos:** `site/assets/img/onur-dogru.jpg` (Hero) und `onur-dogru-2.jpg` (Kontakt) – freigestellt, kühl gegradet, Navy-Hintergrund eingebrannt (4:5, 900 × 1125 px).
 - **Stylesheet geändert?** Versionsparameter `styles.css?v=JJJJMMTT` in allen HTML-Dateien hochzählen.
 - **QR-Code** zeigt auf `https://cmfsurgeon.com` und bleibt gültig, solange die Domain läuft.

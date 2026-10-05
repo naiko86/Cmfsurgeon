@@ -225,8 +225,28 @@ p { margin: 0; }
   min-height: calc(100svh - 68px);
   padding-block: clamp(64px, 9vw, 120px) clamp(72px, 8vw, 112px);
 }
-.hero-inner { display: flex; flex-direction: column; gap: clamp(56px, 9vw, 112px); }
-.hero-copy { max-width: 660px; }
+.hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  grid-template-areas: "copy portrait" "stats portrait";
+  column-gap: clamp(40px, 6vw, 96px);
+  row-gap: clamp(56px, 8vw, 96px);
+  align-items: end;
+}
+.hero-copy { grid-area: copy; max-width: 660px; }
+.hero-inner .stats { grid-area: stats; }
+
+/* Portraits (variant B: natural colour, cool grade, navy backdrop baked in) */
+.portrait {
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: #0c1631;
+  border: 1px solid rgba(143, 178, 255, .18);
+  box-shadow: 0 40px 90px -40px rgba(0, 0, 0, .8);
+}
+.portrait img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; }
+.portrait-hero { grid-area: portrait; align-self: center; justify-self: end; width: min(100%, 420px); }
 
 .chip {
   display: inline-flex;
@@ -428,6 +448,14 @@ p { margin: 0; }
 }
 .connect-mail:hover { border-color: var(--blue-soft); }
 
+.contact-visual {
+  position: relative;
+  justify-self: end;
+  width: min(100%, 480px);
+  padding: 0 0 150px 90px;
+}
+.portrait-contact { width: 100%; }
+.contact-visual .card-stack { position: absolute; left: 0; bottom: 0; width: min(78%, 340px); }
 .card-stack { position: relative; width: min(100%, 360px); justify-self: center; }
 .card-back {
   position: absolute;
@@ -516,6 +544,9 @@ p { margin: 0; }
 @media (max-width: 1000px) {
   .connect-grid { grid-template-columns: minmax(0, 1fr); }
   .card-stack { justify-self: start; }
+  .hero-inner { grid-template-columns: minmax(0, 1fr); grid-template-areas: "copy" "portrait" "stats"; row-gap: 48px; }
+  .portrait-hero { justify-self: start; width: min(100%, 400px); }
+  .contact-visual { justify-self: start; }
 }
 
 @media (max-width: 860px) {
@@ -541,6 +572,8 @@ p { margin: 0; }
   .bizcard-qr svg { width: 96px; height: 96px; }
   .wordmark-suffix { display: none; }
   .scroll-cue { display: none; }
+  .contact-visual { padding: 0 0 240px 64px; }
+  .contact-visual .card-stack { width: 86%; }
 }
 
 @media (max-width: 380px) {
