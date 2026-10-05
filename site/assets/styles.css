@@ -427,6 +427,12 @@ p { margin: 0; }
 .facts a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .muted { color: var(--ink-soft); }
 
+.practice-note { margin-top: 24px; padding: clamp(28px, 3.5vw, 44px); border-color: rgba(143, 178, 255, .25); }
+.practice-note h3 { font-size: clamp(1.375rem, 2.2vw, 1.75rem); line-height: 1.2; letter-spacing: -.025em; }
+.practice-note p:not(.eyebrow) { margin-top: 12px; color: var(--ink-soft); }
+.practice-note .practice-note-en { font-size: .9375rem; }
+.practice-note .btn { margin-top: 24px; }
+
 /* ---------- Contact ---------- */
 .connect { position: relative; padding-block: var(--section-y); overflow-x: clip; }
 .connect-grid {
