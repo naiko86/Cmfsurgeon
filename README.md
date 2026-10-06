@@ -75,3 +75,20 @@ bleibt der Hintergrund einfach dunkel.
 - **Porträtfotos:** `site/assets/img/onur-dogru.jpg` (Hero) und `onur-dogru-2.jpg` (Kontakt) – freigestellt, kühl gegradet, Navy-Hintergrund eingebrannt (4:5, 900 × 1125 px).
 - **Stylesheet geändert?** Versionsparameter `styles.css?v=JJJJMMTT` in allen HTML-Dateien hochzählen.
 - **QR-Code** zeigt auf `https://cmfsurgeon.com` und bleibt gültig, solange die Domain läuft.
+
+## Apple Wallet (Visitenkarte als Pass)
+
+`wallet/pass/` enthält die Karte (pass.json, Icon, Porträt-Thumbnail), `wallet/build-pass.sh` signiert sie.
+Der Deploy baut `onur-dogru.pkpass` und blendet den Button „Add to Apple Wallet“ automatisch ein,
+**sobald** diese Werte im Repo hinterlegt sind (Settings → Secrets and variables → Actions):
+
+| Art | Name | Inhalt |
+|---|---|---|
+| Secret | `PASS_CERT_P12_BASE64` | Pass-Type-ID-Zertifikat inkl. privatem Schlüssel als .p12, base64-kodiert (`base64 -i cert.p12 \| pbcopy`) |
+| Secret | `PASS_CERT_PASSWORD` | Passwort der .p12-Datei |
+| Variable | `PASS_TYPE_ID` | z. B. `pass.com.cmfsurgeon.card` |
+| Variable | `TEAM_ID` | Apple-Developer-Team-ID (10 Zeichen) |
+
+Voraussetzung: Mitgliedschaft im Apple Developer Program. Dort unter Certificates, Identifiers & Profiles
+eine **Pass Type ID** anlegen, dafür ein Zertifikat erstellen, in der Schlüsselbundverwaltung als .p12 exportieren.
+Ohne diese Werte läuft der Deploy normal weiter, nur ohne Wallet-Karte.

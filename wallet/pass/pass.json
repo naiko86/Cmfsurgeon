@@ -1,0 +1,35 @@
+{
+  "formatVersion": 1,
+  "passTypeIdentifier": "__PASS_TYPE_ID__",
+  "teamIdentifier": "__TEAM_ID__",
+  "serialNumber": "cmfsurgeon-business-card-1",
+  "organizationName": "Onur Dogru, MD, DMD",
+  "description": "Business card of Onur Dogru, MD, DMD",
+  "logoText": "cmfsurgeon.com",
+  "backgroundColor": "rgb(5, 11, 26)",
+  "foregroundColor": "rgb(243, 246, 252)",
+  "labelColor": "rgb(143, 178, 255)",
+  "sharingProhibited": false,
+  "generic": {
+    "primaryFields": [
+      { "key": "name", "label": "ORAL & MAXILLOFACIAL SURGEON", "value": "Onur Dogru, MD, DMD" }
+    ],
+    "secondaryFields": [
+      { "key": "position", "label": "POSITION", "value": "Deputy Senior Consultant" }
+    ],
+    "auxiliaryFields": [
+      { "key": "hospital", "label": "HOSPITAL", "value": "University Hospital St. Pölten, Austria" }
+    ],
+    "backFields": [
+      { "key": "email", "label": "Email", "value": "contact@cmfsurgeon.com" },
+      { "key": "web", "label": "Website", "value": "https://cmfsurgeon.com" },
+      { "key": "linkedin", "label": "LinkedIn", "value": "https://www.linkedin.com/in/onur-dogru-84145b29a" },
+      { "key": "focus", "label": "Clinical focus", "value": "Orthognathic surgery · Tumour & reconstructive surgery · Trauma surgery" },
+      { "key": "languages", "label": "Languages", "value": "English, German, Turkish" },
+      { "key": "german", "label": "Deutsch / Patients", "value": "https://zahnop.at" }
+    ]
+  },
+  "barcodes": [
+    { "format": "PKBarcodeFormatQR", "message": "https://cmfsurgeon.com", "messageEncoding": "iso-8859-1", "altText": "cmfsurgeon.com" }
+  ]
+}

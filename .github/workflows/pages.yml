@@ -24,6 +24,20 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - uses: actions/configure-pages@v6
+      # Apple Wallet business card: built and signed only when the certificate secrets exist.
+      - name: Build Apple Wallet pass
+        env:
+          PASS_CERT_P12_BASE64: ${{ secrets.PASS_CERT_P12_BASE64 }}
+          PASS_CERT_PASSWORD: ${{ secrets.PASS_CERT_PASSWORD }}
+          PASS_TYPE_ID: ${{ vars.PASS_TYPE_ID }}
+          TEAM_ID: ${{ vars.TEAM_ID }}
+        run: |
+          if [ -n "$PASS_CERT_P12_BASE64" ] && [ -n "$PASS_TYPE_ID" ] && [ -n "$TEAM_ID" ]; then
+            wallet/build-pass.sh "$PWD/site/onur-dogru.pkpass"
+            sed -i 's#<!-- wallet-button -->#<a class="btn btn-outline-light btn-wallet" href="onur-dogru.pkpass">Add to Apple Wallet</a>#g' site/index.html
+          else
+            echo "Wallet certificate not configured - skipping the pass."
+          fi
       - uses: actions/upload-pages-artifact@v5
         with:
           path: site

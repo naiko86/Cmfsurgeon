@@ -458,10 +458,10 @@ p { margin: 0; }
   position: relative;
   justify-self: end;
   width: min(100%, 480px);
-  padding: 0 0 150px 90px;
+  padding: 0 0 290px 110px;
 }
 .portrait-contact { width: 100%; }
-.contact-visual .card-stack { position: absolute; left: 0; bottom: 0; width: min(78%, 340px); }
+.contact-visual .card-stack { position: absolute; left: 0; bottom: 0; width: min(74%, 330px); }
 .card-stack { position: relative; width: min(100%, 360px); justify-self: center; }
 .card-back {
   position: absolute;
@@ -578,8 +578,8 @@ p { margin: 0; }
   .bizcard-qr svg { width: 96px; height: 96px; }
   .wordmark-suffix { display: none; }
   .scroll-cue { display: none; }
-  .contact-visual { padding: 0 0 240px 64px; }
-  .contact-visual .card-stack { width: 86%; }
+  .contact-visual { padding: 0 0 300px 56px; }
+  .contact-visual .card-stack { width: 88%; }
 }
 
 @media (max-width: 380px) {
