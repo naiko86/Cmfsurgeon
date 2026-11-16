@@ -590,3 +590,128 @@ p { margin: 0; }
   html { scroll-behavior: auto; }
   *, *::after { transition: none !important; animation: none !important; }
 }
+
+/* ================= Cinematic edition ================= */
+@font-face {
+  font-family: "Schibsted Grotesk";
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url("fonts/schibsted-grotesk-latin-wght.woff2") format("woff2");
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("fonts/ibm-plex-mono-latin-500.woff2") format("woff2");
+}
+:root {
+  --display: "Schibsted Grotesk", "Inter", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --tshadow: 0 1px 2px rgba(3, 7, 18, .95), 0 3px 12px rgba(3, 7, 18, .78), 0 10px 44px rgba(3, 7, 18, .8);
+  --ease-out: cubic-bezier(.2, .7, .2, 1);
+}
+html, body { overflow-x: hidden; overflow-x: clip; }
+h1, h2, h3, .stat-value, .wordmark-name, .bizcard-name, .connect-mail { font-family: var(--display); }
+.eyebrow, .chip, .tile-num, .facts dt, .bizcard-domain { font-family: var(--mono); letter-spacing: .06em; }
+.eyebrow { font-size: .75rem; }
+.facts dt { font-size: .8125rem; font-weight: 500; text-transform: uppercase; }
+
+/* ---------- Film hero ---------- */
+.film { position: relative; height: 400vh; background: var(--night); z-index: 1; }
+.film-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  background: #03102e;
+}
+.film-poster, .film-video, .film-scrim { position: absolute; inset: 0; width: 100%; height: 100%; }
+.film-poster { background: #03102e center / cover no-repeat; }
+.film-video { object-fit: cover; opacity: 0; transition: opacity .6s var(--ease-out); will-change: transform; transform: translateZ(0); }
+.film-stage.video-ready .film-video { opacity: 1; }
+.film-stage.video-failed .film-video { display: none; }
+.film-scrim {
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(3, 9, 24, .82) 0%, rgba(3, 9, 24, .62) 30%, rgba(3, 9, 24, .12) 58%, rgba(3, 9, 24, 0) 72%),
+    linear-gradient(0deg, rgba(5, 11, 26, .9) 0%, rgba(5, 11, 26, 0) 22%);
+}
+.film-bands { position: absolute; inset: 0; margin-inline: auto; }
+.band {
+  position: absolute;
+  left: var(--gutter);
+  right: var(--gutter);
+  top: 50%;
+  max-width: 640px;
+  transform: translateY(-50%);
+  opacity: 0;
+  visibility: hidden;
+  text-shadow: var(--tshadow);
+}
+.band::before {
+  content: "";
+  position: absolute;
+  inset: -22% -30% -22% -40%;
+  z-index: -1;
+  pointer-events: none;
+  opacity: calc(.25 + .75 * var(--k, 1));
+  background: radial-gradient(ellipse 70% 60% at 42% 50%, rgba(3, 7, 18, .7) 0%, rgba(3, 7, 18, .46) 46%, rgba(3, 7, 18, 0) 76%);
+}
+.band .btn { text-shadow: none; }
+.band .chip { background: rgba(8, 12, 26, .6); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); text-shadow: 0 1px 3px rgba(3, 7, 18, .85); }
+.film h1 {
+  font-size: clamp(3.1rem, 8.2vw, 7rem);
+  line-height: .95;
+  letter-spacing: -.04em;
+  font-weight: 700;
+}
+.band-line { font-family: var(--display); font-weight: 600; font-size: clamp(2rem, 4.4vw, 3.75rem); line-height: 1.06; letter-spacing: -.035em; }
+.band-line-soft { margin-top: .18em; color: var(--blue-soft); }
+.band-title { font-size: clamp(2.5rem, 5.6vw, 4.75rem); line-height: 1; letter-spacing: -.04em; font-weight: 700; }
+.band-sub { margin-top: 20px; max-width: 34em; font-size: clamp(1.0625rem, 1.4vw, 1.25rem); line-height: 1.5; color: #c5d0e4; }
+.band-cta { margin-top: 32px; }
+
+/* Scrubbed entrances: transform and opacity only, driven by --k */
+.film.scrub .band-1 > * { opacity: var(--k, 0); transform: scale(calc(.94 + .06 * var(--k, 0))); transform-origin: 0 60%; }
+.film.scrub .w {
+  display: inline-block;
+  --kc: clamp(0, (var(--k, 0) - var(--th, 0)) * 2.8, 1);
+  opacity: var(--kc);
+  transform: translateY(calc((1 - var(--kc)) * var(--dy, -22px)));
+}
+.film.scrub .band-3 .w { --dy: 26px; }
+.film.scrub .band-sub { --ks: clamp(0, (var(--k, 0) - .66) * 4, 1); opacity: var(--ks); transform: translateY(calc((1 - var(--ks)) * 14px)); }
+.film.scrub .band-cta { --kb: clamp(0, (var(--k, 0) - .78) * 5, 1); opacity: var(--kb); transform: translateY(calc((1 - var(--kb)) * 14px)); }
+.film .scroll-cue { z-index: 2; }
+
+/* Static image hero: phones, portrait tablets, short landscape phones, reduced motion.
+   These five conditions are mirrored character for character in hero.js. */
+@media (max-width: 720px), (orientation: portrait) and (max-width: 1024px), (orientation: portrait) and (pointer: coarse), (orientation: landscape) and (pointer: coarse) and (max-height: 560px), (prefers-reduced-motion: reduce) {
+  .film { height: auto; }
+  .film-stage { position: relative; height: auto; min-height: calc(100svh - 68px); display: flex; align-items: flex-end; background: #03102e url("hero-ending.jpg") 62% 50% / cover no-repeat; }
+  .film-poster, .film-video, .film .scroll-cue { display: none; }
+  .film-scrim { background: linear-gradient(0deg, rgba(3, 9, 24, .94) 0%, rgba(3, 9, 24, .78) 45%, rgba(3, 9, 24, .2) 100%); }
+  .film-bands { position: relative; inset: auto; padding-block: 96px 56px; display: flex; flex-direction: column; gap: 20px; }
+  .band { position: static; transform: none; opacity: 1; visibility: visible; max-width: none; }
+  .band::before { display: none; }
+  .band-3 .band-title, .band-3 .band-sub { display: none; }
+  .band-cta { margin-top: 12px; }
+  .band-line { font-size: clamp(1.5rem, 5.4vw, 2.25rem); }
+}
+
+/* ---------- Intro ---------- */
+.intro { padding-block: clamp(72px, 10vw, 128px); }
+.intro .hero-inner { align-items: center; }
+.intro-lead { font-family: var(--display); font-weight: 500; font-size: clamp(1.5rem, 2.6vw, 2.25rem); line-height: 1.25; letter-spacing: -.02em; }
+
+/* ---------- Section entrances ---------- */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s var(--ease-out), transform .7s var(--ease-out); transition-delay: var(--d, 0s); }
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+@media (pointer: coarse) { .site-footer a, .site-nav a { min-height: 44px; display: inline-flex; align-items: center; } }
+@media (max-width: 560px) { .chip { font-size: .75rem; letter-spacing: .02em; } }

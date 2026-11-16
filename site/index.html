@@ -23,7 +23,8 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="preload" href="assets/fonts/inter-latin-opsz.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="assets/styles.css?v=20261006a">
+  <link rel="preload" href="assets/fonts/schibsted-grotesk-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/styles.css?v=20261116a">
 
   <script type="application/ld+json">
   {
@@ -70,24 +71,50 @@
   </header>
 
   <main id="main">
-    <!-- Hero -->
-    <section class="hero" data-scene="orlight" aria-labelledby="hero-title">
+    <!-- Film hero: one scroll-scrubbed shot. Static image hero on phones and with reduced motion. -->
+    <section class="film" aria-labelledby="hero-title">
+      <div class="film-stage">
+        <div class="film-poster" aria-hidden="true"></div>
+        <video class="film-video" preload="none" muted playsinline aria-hidden="true" tabindex="-1"></video>
+        <div class="film-scrim" aria-hidden="true"></div>
+
+        <div class="wrap film-bands">
+          <div class="band band-1" data-a="0" data-b="0.30">
+            <p class="chip"><span class="chip-dot" aria-hidden="true"></span>Oral &amp; Maxillofacial Surgeon · Austria</p>
+            <h1 id="hero-title">Onur Dogru<span class="h1-suffix">MD, DMD</span></h1>
+          </div>
+
+          <div class="band band-2" data-a="0.34" data-b="0.62">
+            <p class="band-line" data-split>Planned to the millimetre.</p>
+            <p class="band-line band-line-soft" data-split>Performed with a calm hand.</p>
+          </div>
+
+          <div class="band band-3" data-a="0.68" data-b="1">
+            <h2 class="band-title" data-split>Let’s talk cases.</h2>
+            <p class="band-sub">Deputy Senior Consultant, University Hospital St.&nbsp;Pölten. Orthognathic, reconstructive, trauma and facial plastic surgery.</p>
+            <div class="btn-row band-cta">
+              <a class="btn btn-light" href="onur-dogru.vcf" download="Onur-Dogru.vcf">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14"/></svg>
+                Save contact
+              </a>
+              <!-- wallet-button -->
+              <a class="btn btn-outline-light" href="https://www.linkedin.com/in/onur-dogru-84145b29a" rel="noopener">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 10.5V16M8 7.6v.01M12 16v-3.2a2.3 2.3 0 0 1 4.6 0V16M12 10.5V16"/></svg>
+                Connect on LinkedIn
+              </a>
+            </div>
+          </div>
+        </div>
+        <a class="scroll-cue" href="#intro" aria-label="Scroll down"><span aria-hidden="true"></span></a>
+      </div>
+    </section>
+
+    <!-- Introduction -->
+    <section class="section intro" id="intro" data-scene="orlight" aria-label="Introduction">
       <div class="wrap hero-inner">
         <div class="hero-copy">
-          <p class="chip"><span class="chip-dot" aria-hidden="true"></span>Oral &amp; Maxillofacial Surgeon · Austria</p>
-          <h1 id="hero-title">Onur Dogru<span class="h1-suffix">MD, DMD</span></h1>
-          <p class="hero-lead">Specialist in oral and maxillofacial surgery. Deputy Senior Consultant at the Department of Oral and Maxillofacial Surgery, University Hospital St.&nbsp;Pölten.</p>
-          <div class="btn-row">
-            <a class="btn btn-light" href="onur-dogru.vcf" download="Onur-Dogru.vcf">
-              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0-4.5-4.5M12 15l4.5-4.5M5 19h14"/></svg>
-              Save contact
-            </a>
-            <!-- wallet-button -->
-            <a class="btn btn-outline-light" href="https://www.linkedin.com/in/onur-dogru-84145b29a" rel="noopener">
-              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 10.5V16M8 7.6v.01M12 16v-3.2a2.3 2.3 0 0 1 4.6 0V16M12 10.5V16"/></svg>
-              Connect on LinkedIn
-            </a>
-          </div>
+          <p class="eyebrow">Introduction</p>
+          <p class="intro-lead">Deputy Senior Consultant at the Department of Oral and Maxillofacial Surgery, University Hospital St.&nbsp;Pölten. I also teach at Karl Landsteiner University of Health Sciences in Krems.</p>
         </div>
 
         <ul class="stats" aria-label="At a glance">
@@ -96,10 +123,9 @@
         </ul>
 
         <figure class="portrait portrait-hero">
-          <img src="assets/img/onur-dogru.jpg" width="900" height="1125" alt="Portrait of Onur Dogru, MD, DMD" fetchpriority="high">
+          <img src="assets/img/onur-dogru.jpg" width="900" height="1125" alt="Portrait of Onur Dogru, MD, DMD" loading="lazy">
         </figure>
       </div>
-      <a class="scroll-cue" href="#focus" aria-label="Scroll to clinical focus"><span aria-hidden="true"></span></a>
     </section>
 
     <!-- Clinical focus -->
@@ -273,6 +299,7 @@
       </nav>
     </div>
   </footer>
-  <script src="assets/stage.js?v=20261004c" defer></script>
+  <script src="assets/stage.js?v=20261116a" defer></script>
+  <script src="assets/hero.js?v=20261116a" defer></script>
 </body>
 </html>
